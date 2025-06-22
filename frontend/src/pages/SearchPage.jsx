@@ -72,7 +72,7 @@ const SearchPage = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container max-w-[1024px] mx-auto p-4">
       <div className="lg:hidden">
         <Search />
       </div>
