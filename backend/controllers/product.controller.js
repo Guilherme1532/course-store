@@ -1,13 +1,6 @@
 import ProductModel from "../models/product.model.js";
 
 export async function createProduct(req, res) {
-  if (req.role !== "ADMIN") {
-    return res.status(403).json({
-      message: "Acesso negado",
-      error: true,
-      success: false,
-    });
-  }
   try {
     const {
       name,
@@ -109,13 +102,6 @@ export async function getProductController(req, res) {
 }
 
 export async function updateProduct(req, res) {
-  if (req.role !== "ADMIN") {
-    return res.status(403).json({
-      message: "Acesso negado",
-      error: true,
-      success: false,
-    });
-  }
   try {
     const {
       _id,
@@ -182,13 +168,6 @@ export async function updateProduct(req, res) {
 }
 
 export async function deleteProduct(req, res) {
-  if (req.role !== "ADMIN") {
-    return res.status(403).json({
-      message: "Acesso negado",
-      error: true,
-      success: false,
-    });
-  }
   try {
     const { _id } = req.body;
     if (!_id) {

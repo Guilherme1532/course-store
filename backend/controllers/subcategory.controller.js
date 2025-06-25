@@ -1,13 +1,6 @@
 import SubCategoryModel from "../models/subCategory.model.js";
 
 export async function createSubcategoryController(req, res){
-  if (req.role !== "ADMIN") {
-    return res.status(403).json({
-      message: "Acesso negado",
-      error: true,
-      success: false,
-    });
-  }
   try {
     const { name, image, category } = req.body;
     if (!name || !image || !category[0]) {
@@ -61,13 +54,7 @@ export async function getSubcategoryController(req, res) {
 }
 
 export async function updateSubcategoryController(req, res) {
-  if (req.role !== "ADMIN") {
-    return res.status(403).json({
-      message: "Acesso negado",
-      error: true,
-      success: false,
-    });
-  }
+  
   try {
     
     const { _id, name, image, category } = req.body;
@@ -101,13 +88,6 @@ export async function updateSubcategoryController(req, res) {
 }
 
 export async function deleteSubcategory(req, res) {
-  if(req.role !== "ADMIN") {
-    return res.status(403).json({
-      message: "Acesso negado",
-      error: true,
-      success: false,
-    });
-  }
   try {
     const { _id } = req.body;
     

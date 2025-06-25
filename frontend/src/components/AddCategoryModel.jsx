@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import uploadImage from "../utils/UploadImage";
+import uploadImage from "../utils/uploadImage";
 import SummaryApi from "../common/SummaryApi";
 import toast from "react-hot-toast";
 import AxiosToastError from "../utils/AxiosToastError";

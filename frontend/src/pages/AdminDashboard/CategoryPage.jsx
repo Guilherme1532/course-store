@@ -9,6 +9,7 @@ import NoData from "../../components/NoData";
 import EditCategory from "../../components/EditCategory";
 import { useDispatch, useSelector } from "react-redux";
 import { setAllCategory } from "../../store/productSlice";
+import Loading from "../../components/Loading";
 
 const CategoryPage = () => {
   const dispatch = useDispatch();

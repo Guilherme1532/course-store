@@ -15,6 +15,7 @@ import {
 } from "../controllers/user.controller.js";
 import auth from "../middlewares/auth.js";
 import upload from "../middlewares/multer.js";
+import isAdmin from "../middlewares/isAdmin.js";
 
 const userRouter = Router();
 
@@ -29,6 +30,6 @@ userRouter.put("/verify-forgot-password-otp", verifyForgotPasswordOtp);
 userRouter.put("/reset-password", resetPassword);
 userRouter.post("/refresh-token", refreshToken);
 userRouter.get("/get-user-details", auth, getUserDetails);
-userRouter.delete("/delete-user", auth, deleteUser);
+userRouter.delete("/delete-user", auth, isAdmin, deleteUser);
 
 export default userRouter;

@@ -1,13 +1,6 @@
 import CategoryModel from "../models/category.model.js";
 
 export async function createCategory(req, res) {
-  if(req.role !== "ADMIN") {
-    return res.status(403).json({
-      message: "Acesso negado",
-      error: true,
-      success: false,
-    });
-  }
   try {
     const { name, image } = req.body;
     if (!name || !image) {
@@ -56,13 +49,7 @@ export async function getCategories(req, res) {
 }
 
 export async function deleteCategory(req, res) {
-  if(req.role !== "ADMIN") {
-    return res.status(403).json({
-      message: "Acesso negado",
-      error: true,
-      success: false,
-    });
-  }
+  
   try {
     const { _id } = req.body;
     
@@ -83,13 +70,6 @@ export async function deleteCategory(req, res) {
 }
 
 export async function updateCategory(req, res) {
-  if(req.role !== "ADMIN") {
-    return res.status(403).json({
-      message: "Acesso negado",
-      error: true,
-      success: false,
-    });
-  }
   try {
     const { _id, name, image } = req.body;
     if (!_id) {
