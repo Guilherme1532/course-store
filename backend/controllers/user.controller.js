@@ -29,6 +29,15 @@ export async function registerUserController(req, res) {
         success: false,
       });
     }
+    // Validar o formato do e-mail
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({
+        message: "E-mail inválido",
+        error: true,
+        success: false,
+      });
+    }
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
