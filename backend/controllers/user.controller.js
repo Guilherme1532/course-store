@@ -172,6 +172,49 @@ export async function loginController(req, res) {
   }
 }
 
+export async function googleLoginController(req, res) {
+  try {
+    const { emails, displayName } = req.user;
+    const email = emails[0].value;
+    const avatar = req.user.photos[0].value;
+    let user = await UserModel.findOne({ email });
+    if (!user) {
+      const newUser = new UserModel({
+        name: displayName,
+        email: email,
+        avatar: avatar,
+        password: "",
+        role: "USER",
+        verify_email: true,
+      });
+      user = await newUser.save();
+    }
+    console.log("User found or created:", user);
+    const accessToken = await generateAccessToken(user._id, user.role, user.email);
+    const refreshToken = await generateRefreshToken(user._id);
+    const cookiesOptions = {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+    };
+    res.cookie("accessToken", accessToken, cookiesOptions);
+    res.cookie("refreshToken", refreshToken, cookiesOptions);
+    const updateUserLastLogin = await UserModel.updateOne(
+      { _id: user._id },
+      { last_login_date: Date.now() }
+    );
+    const urlRedirect = `${process.env.FRONTEND_URL}/google-login?accessToken=${accessToken}&refreshToken=${refreshToken}`;
+    return res.redirect(urlRedirect)
+  } catch (error) {
+    console.error("Erro ao fazer login com o Google:", error);
+    return res.status(500).json({
+      message: error.message || error,
+      error: true,
+      success: false,
+    });
+  }
+}
+
 export async function logoutController(req, res) {
   try {
     const userId = req.userId;

@@ -57,10 +57,9 @@ const Register = () => {
   };
 
   return (
-    <div className="flex flex-col items-center mt-4 mx-auto mb-7 min-h-[80vh] w-full">
+    <div className="flex flex-col items-center mt-4 mx-auto min-h-[60vh] max-w-[400px] w-full gap-2 px-6">
       <h1 className="text-xl">Cadastrar</h1>
-      <form onSubmit={handleSubmit} className="w-72 md:w-72 lg:w-80">
-        <div className="grid gap-6 mb-6 md:grid-cols-2"></div>
+      <form onSubmit={handleSubmit} className="w-full">
         <div className="mb-6">
           <label
             htmlFor="name"

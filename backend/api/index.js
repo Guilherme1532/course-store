@@ -13,6 +13,7 @@ import subcategoryRouter from "../routes/subcategory.router.js";
 import productRouter from "../routes/product.route.js";
 import cartRouter from "../routes/cart.route.js";
 import orderRouter from "../routes/order.route.js";
+import passport from "passport";
 
 const app = express();
 
@@ -32,7 +33,7 @@ app.use(
     crossOriginOpenerPolicy: false,
   })
 );
-
+app.use(passport.initialize());
 
 app.use("/api/user", userRouter);
 app.use("/api/category", categoryRouter);

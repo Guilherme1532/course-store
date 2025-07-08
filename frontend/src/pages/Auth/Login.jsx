@@ -7,6 +7,8 @@ import toast from "react-hot-toast";
 import fetchUserDetails from "../../utils/FetchUserDetails";
 import { useDispatch } from "react-redux";
 import { setUserDetails } from "../../store/userSlice";
+import { FcGoogle } from "react-icons/fc";
+import { baseURL } from "../../common/SummaryApi";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -64,11 +66,14 @@ const Login = () => {
     }
   };
 
+  const handleGoogleLogin = async () => {
+    window.location.href = `${baseURL}/api/user/login/google`;
+  };
+
   return (
-    <div className="flex flex-col items-center px-6 mt-4 mx-auto min-h-[60vh] w-full">
+    <div className="flex flex-col items-center px-6 mt-4 max-w-[400px] mx-auto min-h-[60vh] w-full gap-2">
       <h1 className="text-xl">Entrar</h1>
-      <form onSubmit={handleSubmit} className="w-72 md:w-72 lg:w-80">
-        <div className="grid gap-6 mb-6 md:grid-cols-2"></div>
+      <form onSubmit={handleSubmit} className="w-full">
         <div className="mb-6">
           <label
             htmlFor="email"
@@ -128,6 +133,14 @@ const Login = () => {
       <Link to={"/register"} className="text-center">
         Ainda não tem uma conta? Clique aqui
       </Link>
+      <p>ou</p>
+      <button
+        onClick={handleGoogleLogin}
+        className="cursor-pointer w-full p-5 text-black bg-white rounded-lg flex flex-row justify-center items-center gap-3"
+      >
+        <FcGoogle size={25} />
+        Faça login com Google
+      </button>
     </div>
   );
 };

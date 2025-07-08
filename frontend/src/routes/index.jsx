@@ -22,6 +22,7 @@ import CartPage from "../pages/Cart/CartPage";
 import CheckoutPage from "../pages/Payment/CheckoutPage";
 import SuccessCheckoutPage from "../pages/Payment/SuccessCheckoutPage";
 import Checkout from "../layouts/Checkout";
+import GoogleLogin from "../pages/Auth/GoogleLogin";
 
 const routes = createBrowserRouter([
   {
@@ -37,6 +38,7 @@ const routes = createBrowserRouter([
       { path: "cart", element: <CartPage /> },
       { path: "product/:productId", element: <ProductPage /> },
       { path: "login", element: <Login /> },
+      { path: "google-login", element: <GoogleLogin />},
       { path: "register", element: <Register /> },
       { path: "forgot-password", element: <ForgotPassword /> },
       { path: "verification-otp", element: <OtpVerification /> },
